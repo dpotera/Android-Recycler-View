@@ -63,6 +63,11 @@ class MainActivity : AppCompatActivity() {
                 "https://img.utdstc.com/icons/256/mission-impossible-roguenation-android.png",
                 "http://metrograph.com/uploads/films/unspecified-2-1462727223-726x388.jpg")
         movieList.add(movie)
+
+        movie = Movie("PWR drama", "Drama", "2015",
+                "https://scontent.fwaw3-1.fna.fbcdn.net/v/t1.0-9/16003247_674518666062410_1974950114795690614_n.jpg?oh=1b6eac171902f0a32c4f0d4d929b6a1b&oe=59C0CB2E",
+                "https://scontent.fwaw3-1.fna.fbcdn.net/v/t1.0-9/16003247_674518666062410_1974950114795690614_n.jpg?oh=1b6eac171902f0a32c4f0d4d929b6a1b&oe=59C0CB2E")
+        movieList.add(movie)
 //
 //        movie = Movie("Star Wars: Episode VII - The Force Awakens", "Action", "2015")
 //        movieList.add(movie)

@@ -1,19 +1,20 @@
 package pl.potera.recyclerview
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.TextView
-import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.activity_movie.*
+import android.support.v4.app.FragmentActivity
 
-class MovieActivity : AppCompatActivity() {
-
+class MovieActivity : FragmentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_movie)
-
         val movie = intent.extras.getSerializable("movie") as Movie
-        Picasso.with(this).load(movie.image).into(image)
-        movie_title.text = movie.title
+
+        val fragment = MovieFragment()
+        val bundle = Bundle()
+        bundle.putSerializable("movie", movie)
+        fragment.arguments = bundle
+        val transaction = fragmentManager.beginTransaction()
+        transaction.add(R.id.fragment, fragment)
+        transaction.commit()
     }
 }
