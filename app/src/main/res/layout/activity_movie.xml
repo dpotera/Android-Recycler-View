@@ -7,10 +7,18 @@
     tools:context="pl.potera.recyclerview.MovieActivity">
 
     <fragment
-        android:id="@+id/fragment"
-        android:name="pl.potera.recyclerview.MovieFragment"
+        android:id="@+id/fragment_movie"
+        android:name="pl.potera.recyclerview.fragment.MovieFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true" />
+
+    <Button
+        android:id="@+id/see_more"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:text="@string/see_more" />
 </RelativeLayout>

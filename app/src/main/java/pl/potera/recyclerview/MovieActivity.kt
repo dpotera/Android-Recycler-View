@@ -2,6 +2,10 @@ package pl.potera.recyclerview
 
 import android.os.Bundle
 import android.support.v4.app.FragmentActivity
+import kotlinx.android.synthetic.main.activity_movie.*
+import org.jetbrains.anko.intentFor
+import pl.potera.recyclerview.data.Movie
+import pl.potera.recyclerview.fragment.MovieFragment
 
 class MovieActivity : FragmentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -14,7 +18,11 @@ class MovieActivity : FragmentActivity() {
         bundle.putSerializable("movie", movie)
         fragment.arguments = bundle
         val transaction = fragmentManager.beginTransaction()
-        transaction.add(R.id.fragment, fragment)
+        transaction.add(R.id.fragment_movie, fragment)
         transaction.commit()
+
+        see_more.setOnClickListener {
+            startActivity(intentFor<MovieDetailsActivity>("photos" to movie.photos))
+        }
     }
 }

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="pl.potera.recyclerview.MovieFragment">
+    tools:context="pl.potera.recyclerview.fragment.MovieFragment">
 
     <ImageView
         android:id="@+id/image"
@@ -45,4 +45,16 @@
         android:layout_marginRight="10dp"
         android:gravity="center"
         android:text="@string/rating" />
+
+    <TextView
+        android:id="@+id/description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignStart="@+id/textView2"
+        android:layout_below="@+id/ratingBar"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp" />
 </RelativeLayout>

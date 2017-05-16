@@ -33,6 +33,7 @@ dependencies {
     compile 'com.jakewharton:butterknife:8.5.1'
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'org.jetbrains.anko:anko-common:0.9'
+    compile 'com.android.support:design:24.2.1'
     testCompile 'junit:junit:4.12'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
     provided 'org.projectlombok:lombok:1.12.2'
