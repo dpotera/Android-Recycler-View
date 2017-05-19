@@ -22,7 +22,7 @@ class MovieActivity : FragmentActivity() {
         transaction.commit()
 
         see_more.setOnClickListener {
-            startActivity(intentFor<MovieDetailsActivity>("photos" to movie.photos))
+            startActivity(intentFor<MovieDetailsActivity>("movie" to movie))
         }
     }
 }

@@ -11,6 +11,7 @@ import java.util.ArrayList
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.movie_list_row.view.*
 import org.jetbrains.anko.intentFor
+import pl.potera.recyclerview.data.Actor
 import pl.potera.recyclerview.data.Movie
 import pl.potera.recyclerview.data.PhotoTiles
 
@@ -46,6 +47,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun prepareMovieData() {
+
+        val hanna = Actor("Hanna Bazur", "https://www.ii.pwr.edu.pl/~hmazur/hania.jpg")
+        val obama = Actor("Barak", "http://i2.cdn.turner.com/cnnnext/dam/assets/170110212027-01-obama-slider-2008-super-169.jpg")
+        val putin = Actor("Vladimir", "https://cdn.theatlantic.com/assets/media/img/photo/2011/09/vladimir-putin-action-man/p34_DWI22303/main_900.jpg?1420519465")
+
         var movie = Movie("Mad Fraś: Fury swim", "Action & Adventure", "2015",
                 "http://orig07.deviantart.net/e532/f/2016/027/2/8/mad_max___icon_by_blagoicons-d9pkjal.png",
                 "https://zdjecia.pl.sftcdn.net/pl/scrn/69711000/69711274/mad-max-01-700x401.jpg",
@@ -57,8 +63,11 @@ class MainActivity : AppCompatActivity() {
                         "https://ocdn.eu/pulscms-transforms/1/jOlktkpTURBXy85NGRkNmY2MGFkOTVjMjBiYjZhOTM3NzgyODkxYjljMS5qcGeSlQMCAM0D-s0CPJMFzQMgzQHC",
                         "https://radiogra.pl/pliki/2015/11/Politechnika-Wroclawska.jpg",
                         "http://photos.wikimapia.org/p/00/01/56/37/69_big.jpg"
-                ))
+                ),
+                arrayOf(hanna, obama, putin)
+            )
         movieList.add(movie)
+
 
 //        movie = Movie("Dying in Access", "Drama", "2017",
 //                "https://cdn.zapier.com/storage/services/81b8d86866f3cfbe61759985bdfec9d0.128x128.png",
