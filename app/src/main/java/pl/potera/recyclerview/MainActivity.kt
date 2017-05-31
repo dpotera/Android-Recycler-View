@@ -4,6 +4,8 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
+import android.support.v7.widget.helper.ItemTouchHelper
 import android.view.View
 
 import java.util.ArrayList
@@ -11,10 +13,8 @@ import java.util.ArrayList
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.movie_list_row.view.*
 import org.jetbrains.anko.intentFor
-import pl.potera.recyclerview.data.Actor
 import pl.potera.recyclerview.data.Movie
 import pl.potera.recyclerview.data.MovieGenerator
-import pl.potera.recyclerview.data.PhotoTiles
 
 class MainActivity : AppCompatActivity() {
     private val movieList = ArrayList<Movie>()
@@ -23,18 +23,24 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        prepareRecyclerView()
+        prepareMovieData()
+    }
 
+    private fun prepareRecyclerView() {
         val mLayoutManager = LinearLayoutManager(applicationContext)
         recycler_view.layoutManager = mLayoutManager
         recycler_view.itemAnimator = DefaultItemAnimator()
-        recycler_view.addItemDecoration(DividerItemDecoration(this, LinearLayoutManager.VERTICAL))
         recycler_view.adapter = mAdapter
+        recycler_view.addItemDecoration(DividerItemDecoration(this, LinearLayoutManager.VERTICAL))
+        recycler_view.addOnItemTouchListener(recyclerTouchListener())
+        swipeToDismissTouchHelper.attachToRecyclerView(recycler_view)
+    }
 
-        recycler_view.addOnItemTouchListener(RecyclerTouchListener(applicationContext,
+    private fun recyclerTouchListener(): RecyclerTouchListener {
+        return RecyclerTouchListener(applicationContext,
                 recycler_view, object : ClickListener {
-            override fun onClick(view: View, position: Int) {
-                startActivity(intentFor<MovieActivity>("movie" to movieList[position]))
-            }
+            override fun onClick(view: View, position: Int) = startActivity(intentFor<MovieActivity>("movie" to movieList[position]))
 
             override fun onLongClick(view: View, position: Int) {
                 val movie = movieList[position]
@@ -42,9 +48,18 @@ class MainActivity : AppCompatActivity() {
                         if (movie.seen) R.drawable.eye else R.drawable.eye_green))
                 movie.seen = !movie.seen
             }
-        }))
+        })
+    }
 
-        prepareMovieData()
+    val swipeToDismissTouchHelper = ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
+        override fun onMove(recyclerView: RecyclerView?, viewHolder: RecyclerView.ViewHolder?, target: RecyclerView.ViewHolder?) = false
+        override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) = deleteItem(viewHolder)
+    })
+
+    private fun deleteItem(viewHolder: RecyclerView.ViewHolder) {
+        val position = viewHolder.adapterPosition
+        movieList.removeAt(position)
+        mAdapter.notifyItemRemoved(position)
     }
 
     private fun prepareMovieData() {
@@ -54,9 +69,6 @@ class MainActivity : AppCompatActivity() {
 
     interface ClickListener {
         fun onClick(view: View, position: Int)
-
         fun onLongClick(view: View, position: Int)
     }
-
-
 }
